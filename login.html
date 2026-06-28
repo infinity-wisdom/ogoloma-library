@@ -120,16 +120,21 @@
 <h1 class="font-headline-md text-headline-md text-primary">Ogoloma Library</h1>
 <p class="font-body-md text-body-md text-on-surface-variant">Member Login</p>
 </div>
+<!-- Error message banner -->
+<div id="auth-error" class="hidden bg-error-container text-on-error-container font-label-sm text-label-sm px-md py-sm rounded-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">error</span>
+<span id="auth-error-text">Invalid credentials. Please try again.</span>
+</div>
 <!-- Form -->
-<form action="#" class="flex flex-col gap-md" method="POST">
-<!-- Registration Number Input -->
+<form class="flex flex-col gap-md" id="loginForm">
+<!-- Email Input -->
 <div class="flex flex-col gap-base">
-<label class="font-label-sm text-label-sm text-on-surface font-light" for="reg-number">Registration Number</label>
+<label class="font-label-sm text-label-sm text-on-surface font-light" for="email">Email Address</label>
 <div class="relative">
 <div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
 <span class="material-symbols-outlined text-outline text-[20px]" data-icon="badge">badge</span>
 </div>
-<input class="w-full pl-10 pr-sm py-sm bg-surface-container-lowest border border-outline-variant rounded-DEFAULT text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-shadow duration-200" id="reg-number" name="reg-number" placeholder="e.g. OGL-2023-0451" required="" type="text"/>
+<input class="w-full pl-10 pr-sm py-sm bg-surface-container-lowest border border-outline-variant rounded-DEFAULT text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-shadow duration-200" id="email" name="email" placeholder="you@example.com" required="" type="email"/>
 </div>
 </div>
 <!-- Password Input -->
@@ -140,19 +145,19 @@
 <span class="material-symbols-outlined text-outline text-[20px]" data-icon="lock">lock</span>
 </div>
 <input class="w-full pl-10 pr-10 py-sm bg-surface-container-lowest border border-outline-variant rounded-DEFAULT text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-shadow duration-200" id="password" name="password" placeholder="••••••••" required="" type="password"/>
-<button class="absolute inset-y-0 right-0 pr-sm flex items-center text-outline hover:text-on-surface transition-colors" type="button">
+<button class="absolute inset-y-0 right-0 pr-sm flex items-center text-outline hover:text-on-surface transition-colors" id="togglePwd" type="button">
 <span class="material-symbols-outlined text-[20px]" data-icon="visibility_off">visibility_off</span>
 </button>
 </div>
 </div>
 <!-- Forgot Password Link -->
 <div class="flex justify-end">
-<a class="font-label-sm text-label-sm text-primary hover:text-primary-container transition-colors font-medium" href="#">Forgot Password?</a>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-container transition-colors font-medium" href="#" id="forgotLink">Forgot Password?</a>
 </div>
 <!-- Submit Button -->
-<button class="mt-sm w-full bg-primary text-on-primary font-headline-sm text-headline-sm py-sm px-lg rounded-[8px] hover:bg-primary-container transition-colors duration-200 flex items-center justify-center gap-xs shadow-sm active:scale-[0.98]" type="submit">
-<span>Sign In</span>
-<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+<button class="mt-sm w-full bg-primary text-on-primary font-headline-sm text-headline-sm py-sm px-lg rounded-[8px] hover:bg-primary-container transition-colors duration-200 flex items-center justify-center gap-xs shadow-sm active:scale-[0.98]" id="loginBtn" type="submit">
+<span id="loginBtnText">Sign In</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward" id="loginBtnIcon">arrow_forward</span>
 </button>
 </form>
 <!-- Divider -->
@@ -169,4 +174,75 @@
 </p>
 </div>
 </main>
+
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
+<script>
+// ── Password visibility toggle ──────────────────────────────
+document.getElementById('togglePwd').addEventListener('click', function () {
+  const pwd = document.getElementById('password');
+  const icon = this.querySelector('span');
+  const isHidden = pwd.type === 'password';
+  pwd.type = isHidden ? 'text' : 'password';
+  icon.textContent = isHidden ? 'visibility' : 'visibility_off';
+});
+
+// ── Redirect if already logged in ──────────────────────────
+(async () => {
+  const { data: { session } } = await _supabase.auth.getSession();
+  if (session) window.location.href = 'dashboard.html';
+})();
+
+// ── Login form submit ───────────────────────────────────────
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const email    = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const btn      = document.getElementById('loginBtn');
+  const btnText  = document.getElementById('loginBtnText');
+  const btnIcon  = document.getElementById('loginBtnIcon');
+  const errBox   = document.getElementById('auth-error');
+  const errText  = document.getElementById('auth-error-text');
+
+  // Loading state
+  btn.disabled = true;
+  btnText.textContent = 'Signing in…';
+  btnIcon.textContent = 'hourglass_empty';
+  errBox.classList.add('hidden');
+
+  const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
+
+  if (error) {
+    errText.textContent = error.message || 'Invalid email or password.';
+    errBox.classList.remove('hidden');
+    btn.disabled = false;
+    btnText.textContent = 'Sign In';
+    btnIcon.textContent = 'arrow_forward';
+    return;
+  }
+
+  // Success — redirect to dashboard
+  window.location.href = 'dashboard.html';
+});
+
+// ── Forgot password ─────────────────────────────────────────
+document.getElementById('forgotLink').addEventListener('click', async function (e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  if (!email) {
+    alert('Please enter your email address first, then click Forgot Password.');
+    return;
+  }
+  const { error } = await _supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/login.html'
+  });
+  if (error) {
+    alert('Error: ' + error.message);
+  } else {
+    alert('Password reset email sent! Check your inbox.');
+  }
+});
+</script>
 </body></html>

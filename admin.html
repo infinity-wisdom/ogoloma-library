@@ -431,4 +431,19 @@
         if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
         if (overlay) overlay.addEventListener('click', toggleSidebar);
     </script>
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+// ── Admin auth guard ────────────────────────────────────────
+(async () => {
+  const { data: { session } } = await _supabase.auth.getSession();
+  if (!session) { window.location.href = 'login.html'; return; }
+  const role = session.user.user_metadata?.role;
+  if (role !== 'admin') {
+    alert('Access denied. Admin accounts only.');
+    window.location.href = 'dashboard.html';
+  }
+})();
+</script>
 </body></html>

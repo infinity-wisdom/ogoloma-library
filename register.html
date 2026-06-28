@@ -276,55 +276,100 @@
 <span class="material-symbols-outlined text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
 <span class="font-body-md text-body-md">Registration successful! Redirecting to login...</span>
 </div>
-<!-- Minimal Script for Form Submission Demo -->
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
 <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic validation check (passwords match)
-            const pwd = document.getElementById('password').value;
-            const confirmPwd = document.getElementById('confirmPassword').value;
-            
-            if (pwd !== confirmPwd) {
-                alert("Passwords do not match.");
-                return;
-            }
+// ── Password visibility toggle ──────────────────────────────
+document.querySelector('button[type="button"]').addEventListener('click', function () {
+  const pwd = document.getElementById('password');
+  const type = pwd.type === 'password' ? 'text' : 'password';
+  pwd.type = type;
+  this.querySelector('span').textContent = type === 'password' ? 'visibility_off' : 'visibility';
+});
 
-            // Show success toast
-            const toast = document.getElementById('successToast');
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-            
-            // Change button state
-            const btn = this.querySelector('button[type="submit"]');
-            const originalContent = btn.innerHTML;
-            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Processing...';
-            btn.disabled = true;
-            btn.classList.add('opacity-80', 'cursor-not-allowed');
+// ── Redirect if already logged in ──────────────────────────
+(async () => {
+  const { data: { session } } = await _supabase.auth.getSession();
+  if (session) window.location.href = 'dashboard.html';
+})();
 
-            // Hide toast after 3 seconds (simulating redirect)
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-                
-                // Reset button for demo purposes
-                setTimeout(() => {
-                    btn.innerHTML = originalContent;
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-80', 'cursor-not-allowed');
-                    document.getElementById('registrationForm').reset();
-                }, 300);
-            }, 3000);
-        });
+// ── Registration form submit ────────────────────────────────
+document.getElementById('registrationForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-        // Simple password visibility toggle
-        const toggleBtn = document.querySelector('button[type="button"]');
-        const pwdInput = document.getElementById('password');
-        
-        toggleBtn.addEventListener('click', function() {
-            const type = pwdInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            pwdInput.setAttribute('type', type);
-            this.querySelector('span').textContent = type === 'password' ? 'visibility_off' : 'visibility';
-        });
-    </script>
+  const fullName   = document.getElementById('fullName').value.trim();
+  const regNumber  = document.getElementById('regNumber').value.trim();
+  const department = document.getElementById('department').value;
+  const email      = document.getElementById('email').value.trim();
+  const phone      = document.getElementById('phone').value.trim();
+  const password   = document.getElementById('password').value;
+  const confirmPwd = document.getElementById('confirmPassword').value;
+
+  // Validate passwords match
+  if (password !== confirmPwd) {
+    alert('Passwords do not match. Please try again.');
+    return;
+  }
+  if (password.length < 8) {
+    alert('Password must be at least 8 characters.');
+    return;
+  }
+
+  // Loading state
+  const btn = this.querySelector('button[type="submit"]');
+  const originalContent = btn.innerHTML;
+  btn.innerHTML = '<span class="material-symbols-outlined" style="animation: spin 1s linear infinite; display:inline-block">sync</span> Creating account…';
+  btn.disabled = true;
+
+  // 1. Create the auth user in Supabase
+  const { data, error } = await _supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name:   fullName,
+        reg_number:  regNumber,
+        department:  department,
+        phone:       phone
+      }
+    }
+  });
+
+  if (error) {
+    alert('Registration error: ' + error.message);
+    btn.innerHTML = originalContent;
+    btn.disabled = false;
+    return;
+  }
+
+  // 2. Also save the member profile to the members table
+  if (data.user) {
+    await _supabase.from('members').insert({
+      id:          data.user.id,
+      full_name:   fullName,
+      reg_number:  regNumber,
+      department:  department,
+      email:       email,
+      phone:       phone,
+      role:        'member',
+      joined_at:   new Date().toISOString()
+    });
+  }
+
+  // 3. Show success toast
+  const toast = document.getElementById('successToast');
+  toast.classList.remove('translate-y-20', 'opacity-0');
+  toast.classList.add('translate-y-0', 'opacity-100');
+
+  // 4. Redirect to login after 2.5 seconds
+  setTimeout(() => {
+    window.location.href = 'login.html';
+  }, 2500);
+});
+</script>
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
 </body></html>

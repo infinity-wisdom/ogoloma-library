@@ -123,8 +123,8 @@
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
 <input class="w-full pl-10 pr-4 py-2 bg-surface-container rounded-full border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-all" placeholder="Search catalog..." type="text"/>
 </div>
-<button aria-label="Welcome, John Doe" class="flex items-center gap-2 p-2 hover:bg-surface-container rounded-lg transition-colors text-primary">
-<span class="font-body-md text-body-md font-medium hidden sm:block">Welcome, John Doe</span>
+<button aria-label="Welcome" class="flex items-center gap-2 p-2 hover:bg-surface-container rounded-lg transition-colors text-primary" id="userMenuBtn">
+<span class="font-body-md text-body-md font-medium hidden sm:block" id="userNameDisplay">Welcome…</span>
 <span class="material-symbols-outlined filled text-[24px]">account_circle</span>
 </button>
 </div>
@@ -269,4 +269,30 @@
 </div>
 </section>
 </main>
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+// ── Auth guard: redirect to login if not signed in ─────────
+(async () => {
+  const { data: { session } } = await _supabase.auth.getSession();
+  if (!session) {
+    window.location.href = 'login.html';
+    return;
+  }
+  // Show user's name
+  const meta = session.user.user_metadata;
+  const name = meta.full_name || session.user.email;
+  document.getElementById('userNameDisplay').textContent = 'Welcome, ' + name;
+  document.getElementById('userMenuBtn').setAttribute('aria-label', 'Welcome, ' + name);
+})();
+
+// ── Logout ─────────────────────────────────────────────────
+document.getElementById('userMenuBtn').addEventListener('click', async function () {
+  if (confirm('Sign out of Ogoloma Library?')) {
+    await _supabase.auth.signOut();
+    window.location.href = 'login.html';
+  }
+});
+</script>
 </body></html>
