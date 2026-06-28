@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Member Dashboard - Ogoloma Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9ff",
+                        "inverse-on-surface": "#ecf0ff",
+                        "on-background": "#161c27",
+                        "surface-container-high": "#e3e8f9",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary-fixed": "#111c2c",
+                        "on-surface": "#161c27",
+                        "on-tertiary-container": "#99a4b9",
+                        "secondary-fixed-dim": "#eec058",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#2d486d",
+                        "primary-container": "#1e3a5f",
+                        "on-secondary-fixed": "#261a00",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d4daea",
+                        "surface-container-highest": "#dde2f3",
+                        "background": "#f9f9ff",
+                        "tertiary-container": "#2f3a4c",
+                        "surface-container-low": "#f1f3ff",
+                        "secondary": "#795900",
+                        "primary-fixed": "#d5e3ff",
+                        "surface-container": "#e8eeff",
+                        "on-primary-container": "#8aa4cf",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bcc7dd",
+                        "outline": "#74777f",
+                        "secondary-fixed": "#ffdf9f",
+                        "tertiary-fixed": "#d8e3fa",
+                        "inverse-primary": "#adc8f5",
+                        "tertiary": "#192435",
+                        "on-surface-variant": "#43474e",
+                        "on-tertiary-fixed-variant": "#3c475a",
+                        "secondary-container": "#fece65",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2a303d",
+                        "on-primary-fixed": "#001c3b",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-error-container": "#93000a",
+                        "primary": "#022448",
+                        "surface-tint": "#455f87",
+                        "on-secondary-container": "#755700",
+                        "primary-fixed-dim": "#adc8f5",
+                        "surface-variant": "#dde2f3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "label-sm": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-on-background shadow-sm docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop h-16 max-w-7xl mx-auto">
+<div class="flex items-center gap-lg">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed" href="#">Ogoloma Library</a>
+<div class="hidden md:flex gap-lg items-center ml-xl">
+<a class="text-primary dark:text-primary-fixed border-b-2 border-secondary font-bold pb-1 font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200" href="index.html">Home</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200" href="search.html">Search</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200" href="login.html">Login</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium font-body-md text-body-md hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200" href="#">Register</a>
+</div>
+</div>
+<div class="flex items-center gap-md relative">
+<div class="relative w-64 hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container rounded-full border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-all" placeholder="Search catalog..." type="text"/>
+</div>
+<button aria-label="Welcome, John Doe" class="flex items-center gap-2 p-2 hover:bg-surface-container rounded-lg transition-colors text-primary">
+<span class="font-body-md text-body-md font-medium hidden sm:block">Welcome, John Doe</span>
+<span class="material-symbols-outlined filled text-[24px]">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<header class="mb-xl flex justify-between items-end flex-wrap gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg md:font-headline-lg md:text-headline-lg text-primary mb-2">Member Dashboard</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your reading list and account details.</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-body-md text-body-md flex items-center gap-2 hover:bg-primary-container transition-colors shadow-sm hover:shadow-md">
+<span class="material-symbols-outlined">explore</span>
+                Search/Explore
+            </button>
+</header>
+<!-- Quick Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-xl">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] border border-outline-variant/30 flex items-center gap-lg hover:shadow-[0_6px_10px_-1px_rgba(0,0,0,0.1)] transition-shadow">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px] filled">menu_book</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Borrowed Books</p>
+<p class="font-headline-lg text-headline-lg text-primary">3</p>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] border border-outline-variant/30 flex items-center gap-lg hover:shadow-[0_6px_10px_-1px_rgba(0,0,0,0.1)] transition-shadow">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[32px] filled">schedule</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Pending Requests</p>
+<p class="font-headline-lg text-headline-lg text-primary">1</p>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] border border-outline-variant/30 flex items-center gap-lg hover:shadow-[0_6px_10px_-1px_rgba(0,0,0,0.1)] transition-shadow">
+<div class="w-16 h-16 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[32px] filled">payments</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Outstanding Fines</p>
+<p class="font-headline-lg text-headline-lg text-error">$4.50</p>
+</div>
+</div>
+</div>
+<!-- Currently Borrowed Table Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] border border-outline-variant/30 overflow-hidden">
+<div class="p-lg border-b border-outline-variant/50 bg-surface-container-low flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">library_books</span>
+                    Currently Borrowed
+                </h2>
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm font-medium transition-colors">View All History</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/50 bg-surface text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="p-md font-medium">Book Title</th>
+<th class="p-md font-medium">Borrow Date</th>
+<th class="p-md font-medium">Due Date</th>
+<th class="p-md font-medium">Status</th>
+<th class="p-md font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md flex items-center gap-md">
+<div class="w-10 h-14 bg-surface-variant rounded flex-shrink-0 bg-cover bg-center" data-alt="A minimalist book cover design featuring abstract geometric shapes in navy blue and gold on a pristine white background. The aesthetic is clean, academic, and highly professional, fitting for a modern digital library catalog interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlXCZeUJhEYmdMUtLPZl6w37Fvddool6aQSBYEEAfafhHrTG5NSGqdPmDNkfVPwPEAYrFCEFcTYK4F5hNeM_gQx1q0IXt5ZudDRgUS_PdDuqaySDr5U25468bk9jYMQPXpnwpUvUl7dLgxOa8rFVId-SJTMPTf66XXhUKO66tZ41J03KvHn9Ssv-aMhPv8UP7blhRWkHTTqr4xYuqqwsIWf-6VoXU25CplATp5meFvlr7lMF6Up34S1UzhRw-2rCTcCPrMQERnZ60z')"></div>
+<div>
+<p class="font-medium text-primary">The Design of Everyday Things</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Don Norman</p>
+</div>
+</td>
+<td class="p-md text-on-surface">Oct 12, 2023</td>
+<td class="p-md text-on-surface">Nov 02, 2023</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                                    Good Standing
+                                </span>
+</td>
+<td class="p-md text-right">
+<button class="text-on-surface-variant hover:text-secondary px-2 py-1 rounded border border-outline-variant hover:border-secondary transition-colors font-label-sm text-label-sm">Renew</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md flex items-center gap-md">
+<div class="w-10 h-14 bg-surface-variant rounded flex-shrink-0 bg-cover bg-center" data-alt="A sophisticated book cover featuring a minimalist typographic layout with a subtle, debossed grid texture on a crisp white surface. The title text is in a classic serif font, evoking academic rigor and structured research. High key lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsTNr1j-7DZsID0aFgk3XKh1U3MZc6LEAXa_O1Vjy17xYUnZuK522gZ-Gh-dkQfPvY8WKj7EZ3fCAkVVLCW81tKRV8zoBuk5uuij8-6J-U6gSASiFBuy-FcniPt8UgxJNTfPDHw8h6arFuuuzMb_Tiz2vFQ0rMz7HNO2MEeuq319nxX73nh6t9fjUEeCPE2XSNPppA5cJDtdwmPMgdilqgavp6THI4f8l-edmOGTLh9IU13xaZFNCc1fG2h5Use6c-qwZg_rdm6A9S')"></div>
+<div>
+<p class="font-medium text-primary">Thinking, Fast and Slow</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Daniel Kahneman</p>
+</div>
+</td>
+<td class="p-md text-on-surface">Oct 15, 2023</td>
+<td class="p-md text-on-surface font-medium text-error">Oct 29, 2023</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-error-container text-error font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+                                    Due Soon
+                                </span>
+</td>
+<td class="p-md text-right">
+<button class="text-on-surface-variant hover:text-secondary px-2 py-1 rounded border border-outline-variant hover:border-secondary transition-colors font-label-sm text-label-sm">Renew</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md flex items-center gap-md">
+<div class="w-10 h-14 bg-surface-variant rounded flex-shrink-0 bg-cover bg-center" data-alt="A modern, abstract book cover showing a network of connected nodes and lines over a subtle gray gradient background. The design is technical yet accessible, utilizing a clean, light-mode palette with subtle blue accents. Professional library setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0AC0IgLbNDE68z38aqxEqaCt32X8I4DQc0I3rGk_SyuVuaHWz7rZzfmGZFWmN2IBhuoB8cR_Bwcw4z0hav_lcxQ0wmG_6HLYQZ8EUyGAVQGbdGUurNRBvAukKfMw0i0RmzCtVGXjBTA6YCHq6Ri0wPcaD9Zf-9wecz7S6Pc7vqZtcrPZQNd-Pm-KZep_5a36fvPptd3LXPbT0KGskue3ADaCUD5LSJxkvC6xtomtakYytoCMYZeWhnpwoByRr3KFk0hsrz6UqiuEx')"></div>
+<div>
+<p class="font-medium text-primary">Information Architecture</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Louis Rosenfeld</p>
+</div>
+</td>
+<td class="p-md text-on-surface">Oct 20, 2023</td>
+<td class="p-md text-on-surface">Nov 10, 2023</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                                    Good Standing
+                                </span>
+</td>
+<td class="p-md text-right">
+<button class="text-on-surface-variant hover:text-secondary px-2 py-1 rounded border border-outline-variant hover:border-secondary transition-colors font-label-sm text-label-sm">Renew</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer -->
+<div class="p-sm bg-surface-container-lowest border-t border-outline-variant/30 flex justify-between items-center text-on-surface-variant font-label-sm text-label-sm">
+<span>Showing 1 to 3 of 3 entries</span>
+<div class="flex gap-2">
+<button class="p-1 rounded hover:bg-surface-container disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[20px]">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-container disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[20px]">chevron_right</span></button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ogoloma Library - Search Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9ff",
+                        "inverse-on-surface": "#ecf0ff",
+                        "on-background": "#161c27",
+                        "surface-container-high": "#e3e8f9",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary-fixed": "#111c2c",
+                        "on-surface": "#161c27",
+                        "on-tertiary-container": "#99a4b9",
+                        "secondary-fixed-dim": "#eec058",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#2d486d",
+                        "primary-container": "#1e3a5f",
+                        "on-secondary-fixed": "#261a00",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d4daea",
+                        "surface-container-highest": "#dde2f3",
+                        "background": "#f9f9ff",
+                        "tertiary-container": "#2f3a4c",
+                        "surface-container-low": "#f1f3ff",
+                        "secondary": "#795900",
+                        "primary-fixed": "#d5e3ff",
+                        "surface-container": "#e8eeff",
+                        "on-primary-container": "#8aa4cf",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bcc7dd",
+                        "outline": "#74777f",
+                        "secondary-fixed": "#ffdf9f",
+                        "tertiary-fixed": "#d8e3fa",
+                        "inverse-primary": "#adc8f5",
+                        "tertiary": "#192435",
+                        "on-surface-variant": "#43474e",
+                        "on-tertiary-fixed-variant": "#3c475a",
+                        "secondary-container": "#fece65",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2a303d",
+                        "on-primary-fixed": "#001c3b",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-error-container": "#93000a",
+                        "primary": "#022448",
+                        "surface-tint": "#455f87",
+                        "on-secondary-container": "#755700",
+                        "primary-fixed-dim": "#adc8f5",
+                        "surface-variant": "#dde2f3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "label-sm": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Custom Styles for Input Focus Glow as per guidelines */
+        input:focus {
+            box-shadow: 0 0 0 2px rgba(2, 36, 72, 0.2); /* primary color glow */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<nav class="docked full-width top-0 bg-surface shadow-sm sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop h-16 max-w-7xl mx-auto">
+<!-- Left: Brand & Search -->
+<div class="flex items-center gap-xl flex-1">
+<a class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2" href="book-details.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_library</span>
+                    Ogoloma Library
+                </a>
+<!-- Search Bar -->
+<div class="hidden md:flex flex-1 max-w-md relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-xl pr-sm py-sm rounded-lg border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-0 text-on-surface font-body-md" placeholder="Search books, authors, or ISBN..." type="text" value="Science Fiction"/>
+</div>
+</div>
+<!-- Right: Navigation & Actions -->
+<div class="hidden md:flex items-center gap-lg">
+<div class="flex gap-lg">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="index.html">Home</a>
+<!-- Active State -->
+<a class="text-primary border-b-2 border-secondary font-bold pb-1 scale-95 transition-transform duration-150" href="search.html">Search</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="login.html">Login</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-200" href="register.html">Register</a>
+</div>
+<button aria-label="User profile" class="text-primary hover:text-secondary transition-colors duration-200 ml-sm">
+<span class="material-symbols-outlined text-[28px]">account_circle</span>
+</button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-lg flex flex-col md:flex-row gap-xl">
+<!-- Left Sidebar: Filters -->
+<aside class="w-full md:w-64 flex-shrink-0 flex flex-col gap-lg">
+<!-- Header -->
+<div class="flex justify-between items-center border-b border-outline-variant pb-xs">
+<h2 class="font-headline-sm text-headline-sm text-primary">Filters</h2>
+<button class="text-label-sm font-label-sm text-outline hover:text-primary transition-colors">Clear all</button>
+</div>
+<!-- Availability Toggle -->
+<div class="flex flex-col gap-sm">
+<h3 class="font-label-sm text-label-sm font-semibold text-on-surface uppercase tracking-wider">Availability</h3>
+<label class="flex items-center gap-sm cursor-pointer group">
+<div class="relative">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Show only Available</span>
+</label>
+</div>
+<!-- Category Filter -->
+<div class="flex flex-col gap-sm">
+<h3 class="font-label-sm text-label-sm font-semibold text-on-surface uppercase tracking-wider">Categories</h3>
+<div class="flex flex-col gap-xs">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Science Fiction</span>
+<span class="ml-auto text-label-sm font-label-sm text-outline">124</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Fantasy</span>
+<span class="ml-auto text-label-sm font-label-sm text-outline">89</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Non-Fiction</span>
+<span class="ml-auto text-label-sm font-label-sm text-outline">432</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface">Biography</span>
+<span class="ml-auto text-label-sm font-label-sm text-outline">67</span>
+</label>
+<button class="text-left font-label-sm text-label-sm text-primary hover:text-secondary mt-xs font-medium">
+                        + Show 15 more
+                    </button>
+</div>
+</div>
+<!-- Format Filter -->
+<div class="flex flex-col gap-sm">
+<h3 class="font-label-sm text-label-sm font-semibold text-on-surface uppercase tracking-wider">Format</h3>
+<div class="flex flex-wrap gap-xs">
+<button class="px-sm py-base border border-primary bg-primary-fixed text-primary rounded-full font-label-sm text-label-sm">Hardcover</button>
+<button class="px-sm py-base border border-outline-variant text-on-surface-variant rounded-full hover:border-primary font-label-sm text-label-sm transition-colors">Paperback</button>
+<button class="px-sm py-base border border-outline-variant text-on-surface-variant rounded-full hover:border-primary font-label-sm text-label-sm transition-colors">E-Book</button>
+</div>
+</div>
+</aside>
+<!-- Right Content: Results Grid -->
+<div class="flex-1 flex flex-col gap-lg">
+<!-- Results Header -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-sm">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Search Results for <span class="text-primary italic">"Science Fiction"</span></h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Showing 1-12 of 124 books</p>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-label-sm text-label-sm text-outline">Sort by:</span>
+<select class="border-none bg-transparent font-body-md text-body-md text-primary font-medium focus:ring-0 cursor-pointer pr-xl">
+<option>Relevance</option>
+<option>Newest Additions</option>
+<option>Title (A-Z)</option>
+<option>Author (A-Z)</option>
+</select>
+</div>
+</div>
+<!-- Bento/Glassmorphism Grid of Books -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-lg">
+<!-- Book Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden border border-surface-variant group">
+<div class="relative aspect-[2/3] w-full bg-surface-container overflow-hidden">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A striking science fiction book cover featuring a vast, glowing neon city skyline at night with flying vehicles. The aesthetic is highly detailed, cinematic, and modern cyberpunk. The primary colors are deep blues, bright cyan, and magenta, fitting a polished, premium library UI layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrV-7BiPnRYCV9vuhfVl0CFog5LgnHSgZ7yaJ8t5vEkVs-hCVm9KKQUY4r_FbJiPKqa-LUwNTdlnUY_qRzWlS2KdcM559jQVy3RWP2CMJepp5rsUUVfPm_4-d6m_5mJdsmUSNX94XZ5tO7pQioswAlurgdirtgvvEUOhOdHv5KX07XXgdrrgcmG50Ee8ZbMVDUfE-GmASrU98d1lE4Uo4aE5tc4VkUyMkO90GEzIGkgwMxnafliUvFBqku6-rLF66dSYZEbL9Bwxdh"/>
+<div class="absolute top-sm right-sm bg-[#e8f5e9] text-[#1b5e20] px-sm py-base rounded-full font-label-sm text-[12px] font-medium shadow-sm backdrop-blur-sm border border-[#c8e6c9]">
+                            Available
+                        </div>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<div class="mb-xs">
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface-variant rounded-md font-label-sm text-[11px] uppercase tracking-wide">Sci-Fi</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-tight text-on-surface font-semibold mb-1 line-clamp-2 group-hover:text-primary transition-colors">The Quantum Paradox</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant mb-auto">Dr. Aris Thorne</p>
+<button class="mt-sm w-full py-2 border border-primary text-primary rounded-lg font-label-sm text-label-sm font-medium hover:bg-primary hover:text-on-primary transition-colors duration-200">
+                            Reserve
+                        </button>
+</div>
+</article>
+<!-- Book Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden border border-surface-variant group">
+<div class="relative aspect-[2/3] w-full bg-surface-container overflow-hidden">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist and elegant book cover showing a single glowing star against a deep, dark space background. The title typography would be clean and modern. The mood is solitary and contemplative, utilizing high contrast between the pure black void and the brilliant white and gold star." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfrenR0Uu_lwM6Q_MDufQFV3amcsCgDk4ySVYD0wNG7yGMo07IRmI-FWHl1_a9faBGg7HPfNyCKf679suJQLNGIuoTvuxPuDKbbAf6Cg52bvYEuJsdufvLW02CIU3Emc0-RAB8C63O7H1ZJ7Qm5W1EXbxglEdO4nVNxBAsS-h1YPoVvpIICAULfoEqbbuyfB0b-5GrTTr1qC6CWdtnji6cp34Gy6jvnVips2l4LQWkkh1zc4lckeZk13TGv5KOEu3RSc3QI9HWXYOs"/>
+<div class="absolute top-sm right-sm bg-[#ffebee] text-[#b71c1c] px-sm py-base rounded-full font-label-sm text-[12px] font-medium shadow-sm backdrop-blur-sm border border-[#ffcdd2]">
+                            Borrowed
+                        </div>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<div class="mb-xs">
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface-variant rounded-md font-label-sm text-[11px] uppercase tracking-wide">Space Opera</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-tight text-on-surface font-semibold mb-1 line-clamp-2 group-hover:text-primary transition-colors">Echoes of the Void</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant mb-auto">Elena Rostova</p>
+<div class="mt-sm flex items-center justify-between">
+<span class="font-label-sm text-[12px] text-outline">Due: Oct 12</span>
+<button class="text-secondary font-label-sm text-label-sm font-medium hover:underline">
+                                Join Waitlist
+                            </button>
+</div>
+</div>
+</article>
+<!-- Book Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden border border-surface-variant group">
+<div class="relative aspect-[2/3] w-full bg-surface-container overflow-hidden">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="A stylized retro-futuristic book cover featuring a mechanical clockwork planet with metallic gears and brass components. The lighting is warm and dramatic, highlighting the intricate mechanical details. The overall color palette uses rich golds, deep browns, and metallic grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp4v3RopnKMQlw-G3_2DwBRLaU1NyjMtFry_1Jjn4I29mfaX0lEVExbMF2vI4v5_7wQ7ypg8vkCFG9cOA8TiWas7dTAzLPhVOEqp0ybXYKLWZ9VtENHJRi1GMAW43bcAsQfZskzXSwmvHR2ZYZxHGYtpp7PWbtJZcpFqd-Vr7tA7oawsDvcc8RpTKMWwxptxMxpAVUmGenk_UjBjQuE__SDO0yABTmJNU5kOqG9EQ4SQIAHbAvIKsEWtPh84H8DmkER9mFPVsXZpIE"/>
+<div class="absolute top-sm right-sm bg-[#e8f5e9] text-[#1b5e20] px-sm py-base rounded-full font-label-sm text-[12px] font-medium shadow-sm backdrop-blur-sm border border-[#c8e6c9]">
+                            Available
+                        </div>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<div class="mb-xs">
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface-variant rounded-md font-label-sm text-[11px] uppercase tracking-wide">Steampunk</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-tight text-on-surface font-semibold mb-1 line-clamp-2 group-hover:text-primary transition-colors">The Clockwork Engine</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant mb-auto">J.K. Sterling</p>
+<button class="mt-sm w-full py-2 border border-primary text-primary rounded-lg font-label-sm text-label-sm font-medium hover:bg-primary hover:text-on-primary transition-colors duration-200">
+                            Reserve
+                        </button>
+</div>
+</article>
+<!-- Book Card 4 -->
+<article class="bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden border border-surface-variant group">
+<div class="relative aspect-[2/3] w-full bg-surface-container overflow-hidden">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" data-alt="An abstract, modern book cover showing intersecting geometric planes of light in shades of deep blue, white, and silver. The composition is highly structured and architectural, reflecting a hard science fiction theme. The visual style is crisp, vector-like, and highly polished." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS9xtz3D-7oYOlA7jYWdNhIX3YhxRa8T77X21U85IxiO66BamAztMjHwoFmZSmwmmu9RrYxzAzfFsrKrYfoHQhFqmkCqS5_D0ooDvU81D80igqhIVOVZWtS1dsmHtsmUSdWtzwoxX_oRyfePM8cYkKpVpOG-cEIa2MwzADCidOZ74LBIym1m8FhQjN6uujgEts3ufdYeCpzPcmtH5X-_EuCwdT4tTc1No63sBwEWkxmN6pyt_A4qNqy8TuHICWFgMGn5Am0gB9cqGA"/>
+<div class="absolute top-sm right-sm bg-[#e8f5e9] text-[#1b5e20] px-sm py-base rounded-full font-label-sm text-[12px] font-medium shadow-sm backdrop-blur-sm border border-[#c8e6c9]">
+                            Available
+                        </div>
+</div>
+<div class="p-sm flex flex-col flex-1">
+<div class="mb-xs">
+<span class="inline-block px-2 py-1 bg-surface-container-high text-on-surface-variant rounded-md font-label-sm text-[11px] uppercase tracking-wide">Hard Sci-Fi</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-tight text-on-surface font-semibold mb-1 line-clamp-2 group-hover:text-primary transition-colors">Fractal Horizons</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant mb-auto">Marcus Vane</p>
+<button class="mt-sm w-full py-2 border border-primary text-primary rounded-lg font-label-sm text-label-sm font-medium hover:bg-primary hover:text-on-primary transition-colors duration-200">
+                            Reserve
+                        </button>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-xs mt-xl">
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-outline hover:text-primary hover:border-primary disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded bg-primary text-on-primary font-medium text-label-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-on-surface hover:bg-surface-container font-medium text-label-sm">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-on-surface hover:bg-surface-container font-medium text-label-sm">3</button>
+<span class="text-outline mx-1">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-on-surface hover:bg-surface-container font-medium text-label-sm">11</button>
+<button class="w-10 h-10 flex items-center justify-center rounded border border-outline-variant text-outline hover:text-primary hover:border-primary">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

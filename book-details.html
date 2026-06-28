@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book Details - Ogoloma Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9ff",
+                        "inverse-on-surface": "#ecf0ff",
+                        "on-background": "#161c27",
+                        "surface-container-high": "#e3e8f9",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary-fixed": "#111c2c",
+                        "on-surface": "#161c27",
+                        "on-tertiary-container": "#99a4b9",
+                        "secondary-fixed-dim": "#eec058",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#2d486d",
+                        "primary-container": "#1e3a5f",
+                        "on-secondary-fixed": "#261a00",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d4daea",
+                        "surface-container-highest": "#dde2f3",
+                        "background": "#f9f9ff",
+                        "tertiary-container": "#2f3a4c",
+                        "surface-container-low": "#f1f3ff",
+                        "secondary": "#795900",
+                        "primary-fixed": "#d5e3ff",
+                        "surface-container": "#e8eeff",
+                        "on-primary-container": "#8aa4cf",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bcc7dd",
+                        "outline": "#74777f",
+                        "secondary-fixed": "#ffdf9f",
+                        "tertiary-fixed": "#d8e3fa",
+                        "inverse-primary": "#adc8f5",
+                        "tertiary": "#192435",
+                        "on-surface-variant": "#43474e",
+                        "on-tertiary-fixed-variant": "#3c475a",
+                        "secondary-container": "#fece65",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2a303d",
+                        "on-primary-fixed": "#001c3b",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-error-container": "#93000a",
+                        "primary": "#022448",
+                        "surface-tint": "#455f87",
+                        "on-secondary-container": "#755700",
+                        "primary-fixed-dim": "#adc8f5",
+                        "surface-variant": "#dde2f3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "label-sm": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-on-background docked full-width top-0 shadow-sm z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop h-16 max-w-7xl mx-auto">
+<div class="flex items-center gap-lg">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed" href="#">Ogoloma Library</a>
+<!-- Search Bar (on_left) -->
+<div class="hidden md:flex relative items-center ml-lg">
+<span class="material-symbols-outlined absolute left-sm text-on-surface-variant pointer-events-none" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="pl-xl pr-sm py-sm rounded-lg border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-body-md font-body-md w-64 transition-all" placeholder="Search catalog..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 font-label-sm text-label-sm" href="index.html">Home</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-secondary font-bold pb-1 hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 font-label-sm text-label-sm" href="search.html">Search</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 font-label-sm text-label-sm" href="login.html">Login</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 font-label-sm text-label-sm" href="register.html">Register</a>
+<button aria-label="User Profile" class="ml-sm text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center rounded-full p-xs hover:bg-surface-container-high">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</nav>
+<button class="md:hidden text-on-surface-variant p-sm">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="mb-lg">
+<ol class="flex items-center space-x-xs text-label-sm font-label-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="index.html">Home</a></li>
+<li><span class="material-symbols-outlined text-[16px]">chevron_right</span></li>
+<li><a class="hover:text-primary transition-colors" href="search.html">Search</a></li>
+<li><span class="material-symbols-outlined text-[16px]">chevron_right</span></li>
+<li aria-current="page" class="text-on-surface font-medium">The Art of Engineering</li>
+</ol>
+</nav>
+<!-- Book Details Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-xl">
+<!-- Left Column: Image & Details -->
+<div class="lg:col-span-8 flex flex-col md:flex-row gap-lg bg-surface-container-lowest rounded-xl shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] p-lg border border-outline-variant/30 relative overflow-hidden">
+<!-- Decorative background element -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Book Cover -->
+<div class="w-full md:w-1/3 flex-shrink-0 flex justify-center items-start">
+<img alt="Book Cover" class="w-full max-w-[240px] rounded-lg shadow-md object-cover aspect-[2/3] border border-outline-variant/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300" data-alt="A high-quality, professional photograph of a hardcover academic book titled 'The Art of Engineering'. The cover design is modern, featuring geometric blueprints overlaid on a deep navy blue background with subtle gold foil accents. The book is resting on a clean, white marble surface, illuminated by soft, natural studio lighting that highlights the texture of the cover. The overall aesthetic is clean, intellectual, and authoritative, matching a modern academic library." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5ZpXPzyS0ymVyAhcBaIdabsjsYJZbmJQtYIbGNFWplC0_Dei73ciVX4vlu-NaBasJG1WeQlqo96UVnT7IED8KJVn2x0_x3LEq_ip8leeB-brZvjdulewDAs8SzOMqlSg9Oe0wGsa_BuZvDvijeQXmIONskJ6LY1C3TkR3x7vJJ5___lo3woG-H-G56viYfVseTV84wZjbGsgApCv5wfp0HVC56kre95xVaGPNuiMdUcq83sStCv6vxTa380uGp725PvPIBBF8B4Sr"/>
+</div>
+<!-- Book Info -->
+<div class="w-full md:w-2/3 flex flex-col z-10">
+<div class="mb-sm flex items-center gap-xs">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-primary-container/10 text-primary font-label-sm text-label-sm font-medium">Engineering</span>
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Textbook</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs">The Art of Engineering</h1>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant mb-md">By Dr. Eleanor Vance</p>
+<div class="h-px w-full bg-outline-variant/30 mb-md"></div>
+<div class="grid grid-cols-2 gap-sm mb-lg">
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1">ISBN</p>
+<p class="font-body-md text-body-md text-on-surface">978-0-123456-47-2</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1">Publication Year</p>
+<p class="font-body-md text-body-md text-on-surface">2023</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1">Publisher</p>
+<p class="font-body-md text-body-md text-on-surface">Academic Press Intl.</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1">Edition</p>
+<p class="font-body-md text-body-md text-on-surface">3rd Edition</p>
+</div>
+</div>
+<div class="mt-auto bg-surface-container-low p-sm rounded-lg border border-outline-variant/20">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div>
+<p class="font-label-sm text-label-sm text-outline mb-1">Shelf Location</p>
+<p class="font-headline-sm text-headline-sm text-primary font-semibold">Floor 3, Section E, Shelf 42</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Status & Action -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Status Box -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] p-lg border-t-4 border-[#16a34a] flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-[#16a34a]/10 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-[#16a34a] text-3xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-[#16a34a] mb-xs tracking-wide">AVAILABLE</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">3 copies currently on shelf.</p>
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-body-md text-body-md font-medium py-[12px] px-[24px] rounded-lg transition-colors duration-200 flex items-center justify-center gap-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">book</span>
+                        Borrow Now
+                    </button>
+<button class="w-full mt-sm bg-transparent border border-outline text-on-surface hover:bg-surface-container-high font-body-md text-body-md font-medium py-[12px] px-[24px] rounded-lg transition-colors duration-200 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">bookmark_add</span>
+                        Add to Reading List
+                    </button>
+</div>
+<!-- Synopsis Snippet (Optional Bento Box) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] p-lg border border-outline-variant/30 flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-outline">info</span>
+                        Synopsis
+                    </h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-5">
+                        A comprehensive overview of modern structural and mechanical engineering principles. This updated edition covers advanced materials, sustainable design practices, and computational modeling techniques. Essential reading for both students and practicing professionals looking to bridge the gap between theoretical physics and real-world application.
+                    </p>
+<button class="text-primary hover:text-secondary font-label-sm text-label-sm font-medium mt-sm flex items-center gap-1 transition-colors">
+                        Read full description <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- You Might Also Like Section -->
+<section class="mt-xl pt-lg border-t border-outline-variant/30">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-lg">You Might Also Like</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Recommendation Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm shadow-sm hover:shadow-md transition-shadow border border-outline-variant/20 flex flex-col group cursor-pointer">
+<div class="relative w-full aspect-[2/3] mb-sm overflow-hidden rounded-md bg-surface-container-high">
+<img alt="Advanced Fluid Dynamics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A professional photograph of a textbook cover titled 'Advanced Fluid Dynamics'. The design features abstract blue and white fluid wave patterns. Shot straight-on in soft lighting against a plain white background. Modern academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoodin7ltCAylzd4GRoObEWVZDEuV3Ch1hmMHAN29yXBujwkROkU99lz-Odg5ZRRo8M_nYPnPQgMALDlVWqCZmkQLhS1iuuPzsomkY_BKRzQNun9BRW0ws2_MKJ1jzhtupYrG961d5AQZAfI2i_JZ8zVIFX_OzLQpfodfBoTJ-CR6_brJSSs-oqOiAt5XE_xte0-x_AERVe2bqY5ZYuHcGfRqNvSAA5x0dSybPtgPdK1yCX2JXMppWbZZvhpnRz-WLxKrJMKuOAAYD"/>
+</div>
+<h4 class="font-label-sm text-label-sm font-semibold text-on-surface line-clamp-2 mb-1 group-hover:text-primary transition-colors">Advanced Fluid Dynamics</h4>
+<p class="font-label-sm text-label-sm text-outline text-[12px] mb-2">J.K. Simmons</p>
+<div class="mt-auto inline-flex items-center px-2 py-0.5 rounded-full bg-[#16a34a]/10 text-[#16a34a] font-label-sm text-[11px] font-medium w-fit">Available</div>
+</div>
+<!-- Recommendation Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm shadow-sm hover:shadow-md transition-shadow border border-outline-variant/20 flex flex-col group cursor-pointer">
+<div class="relative w-full aspect-[2/3] mb-sm overflow-hidden rounded-md bg-surface-container-high">
+<img alt="Sustainable Materials" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A professional photograph of a textbook cover titled 'Sustainable Materials'. The cover design is minimal with an earthy green geometric leaf motif on a cream background. High contrast, studio lighting. Modern academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhre0NL8sO8uPAaG8f_kNM3aUWRLAY0Rb1wtRiJOuNPF5UrrlfgfVUQWIQ9SYpTWxEERT8sgO2qBPzZjnYNSVq2SLTBLiayVrGYWC475KnPdPD3irPEfUuDLajvKrfWIIq2nWAr-aALm-zte7uwD5jt2XHBO8d_5tBoqGQvbjJhmFTt7Jhe7pQ_Kjhkl06ENxM4LtbY1YaNplj60FdqIkoFwsBDFJ3TKiE_bCQqC5H1aZpHtyz_tJL2vjmz-C17furDlgQAfxZ_cXq"/>
+</div>
+<h4 class="font-label-sm text-label-sm font-semibold text-on-surface line-clamp-2 mb-1 group-hover:text-primary transition-colors">Sustainable Materials in Modern Construction</h4>
+<p class="font-label-sm text-label-sm text-outline text-[12px] mb-2">A. Patel</p>
+<div class="mt-auto inline-flex items-center px-2 py-0.5 rounded-full bg-[#ba1a1a]/10 text-[#ba1a1a] font-label-sm text-[11px] font-medium w-fit">Checked Out</div>
+</div>
+<!-- Recommendation Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm shadow-sm hover:shadow-md transition-shadow border border-outline-variant/20 flex flex-col group cursor-pointer hidden md:flex">
+<div class="relative w-full aspect-[2/3] mb-sm overflow-hidden rounded-md bg-surface-container-high">
+<img alt="Thermodynamics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A professional photograph of a textbook cover titled 'Thermodynamics'. The cover shows a stylized wireframe of an engine in bright orange on a dark grey background. Crisp, clean lines, well-lit studio setting. Modern academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYNqStMJ4jvLTM95bcjlhDSIJOLhILvSrJGusrHHW6sHDvZTKfvLjcxfgokv1S7MXGUNYCFyF7cd_IRTxIkASEap7mSJKRR4cLVAH9lzx4NHIRfz6UdW6PfNCNkK0GU-41geo6IH9r14w0HNgrVTT06KUvCu7ba0F408Wb9QGiG9ZGonf_UkSzug8Cse0t35KlvbIHRFMREo5RPi_hnP5VUQ5XY9h05RwGZvufGPxIjNwNT0Wt0RVHwWUED_527KmhYpAFz9tayzBv"/>
+</div>
+<h4 class="font-label-sm text-label-sm font-semibold text-on-surface line-clamp-2 mb-1 group-hover:text-primary transition-colors">Thermodynamics: An Engineering Approach</h4>
+<p class="font-label-sm text-label-sm text-outline text-[12px] mb-2">C. Boles</p>
+<div class="mt-auto inline-flex items-center px-2 py-0.5 rounded-full bg-[#16a34a]/10 text-[#16a34a] font-label-sm text-[11px] font-medium w-fit">Available</div>
+</div>
+<!-- Recommendation Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm shadow-sm hover:shadow-md transition-shadow border border-outline-variant/20 flex flex-col group cursor-pointer hidden md:flex">
+<div class="relative w-full aspect-[2/3] mb-sm overflow-hidden rounded-md bg-surface-container-high">
+<img alt="Statics &amp; Mechanics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A professional photograph of a textbook cover titled 'Statics &amp; Mechanics'. The cover features a stark black and white photo of a bridge truss. Professional library setting, soft lighting, sharp focus. Modern academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAigniwfja1Q3SS5YB_fzB7NsHyUZKiRBeRt7bKFt7aryF6Bbf9j4zeCgJBggAsZHHKpzK8D20Mqhfj9lzksJt7pxxRlq02z8e-CjUMCLkdGSduJ2FOsWJL40M5bFBDbQtheUwwfZjWgerUmxbUUF5xqC9jACK9hlHVTiQ-AWxKIWfN7mjU3B07AMxZu-Mh3OL_Hcfqic8mrQFPntaFPlGnqoZtnYQTInU95fEFqWxUnFSHIYBAjJ2aq072hz4pgdeBxdvpXGGlwNqz"/>
+</div>
+<h4 class="font-label-sm text-label-sm font-semibold text-on-surface line-clamp-2 mb-1 group-hover:text-primary transition-colors">Statics &amp; Mechanics of Materials</h4>
+<p class="font-label-sm text-label-sm text-outline text-[12px] mb-2">R. Hibbeler</p>
+<div class="mt-auto inline-flex items-center px-2 py-0.5 rounded-full bg-[#16a34a]/10 text-[#16a34a] font-label-sm text-[11px] font-medium w-fit">Available</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

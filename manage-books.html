@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manage Books - Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9ff",
+                        "inverse-on-surface": "#ecf0ff",
+                        "on-background": "#161c27",
+                        "surface-container-high": "#e3e8f9",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary-fixed": "#111c2c",
+                        "on-surface": "#161c27",
+                        "on-tertiary-container": "#99a4b9",
+                        "secondary-fixed-dim": "#eec058",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#2d486d",
+                        "primary-container": "#1e3a5f",
+                        "on-secondary-fixed": "#261a00",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d4daea",
+                        "surface-container-highest": "#dde2f3",
+                        "background": "#f9f9ff",
+                        "tertiary-container": "#2f3a4c",
+                        "surface-container-low": "#f1f3ff",
+                        "secondary": "#795900",
+                        "primary-fixed": "#d5e3ff",
+                        "surface-container": "#e8eeff",
+                        "on-primary-container": "#8aa4cf",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bcc7dd",
+                        "outline": "#74777f",
+                        "secondary-fixed": "#ffdf9f",
+                        "tertiary-fixed": "#d8e3fa",
+                        "inverse-primary": "#adc8f5",
+                        "tertiary": "#192435",
+                        "on-surface-variant": "#43474e",
+                        "on-tertiary-fixed-variant": "#3c475a",
+                        "secondary-container": "#fece65",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2a303d",
+                        "on-primary-fixed": "#001c3b",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-error-container": "#93000a",
+                        "primary": "#022448",
+                        "surface-tint": "#455f87",
+                        "on-secondary-container": "#755700",
+                        "primary-fixed-dim": "#adc8f5",
+                        "surface-variant": "#dde2f3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "label-sm": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-primary dark:bg-tertiary border-r border-outline-variant shadow-lg flex flex-col py-lg z-50">
+<div class="px-md mb-lg">
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-primary">Admin Panel</h2>
+<p class="font-label-sm text-label-sm text-on-primary/70">Ogoloma Branch</p>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="flex flex-col gap-sm px-sm">
+<li>
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="bg-primary-container text-on-primary-container border-l-4 border-secondary-container flex items-center gap-xs px-md py-sm transition-all duration-200 translate-x-1 rounded-r-md" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book" data-weight="fill" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-body-md text-body-md font-medium">Books</span>
+</a>
+</li>
+<li>
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md text-body-md">Users</span>
+</a>
+</li>
+<li>
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+<span class="font-body-md text-body-md">Circulation</span>
+</a>
+</li>
+<li>
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</li>
+<li>
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200 rounded-md mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="px-sm mt-auto pt-lg border-t border-outline-variant/20">
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 ml-[280px] p-margin-desktop bg-surface min-h-screen">
+<header class="flex justify-between items-center mb-xl">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Manage Books</h1>
+<button class="bg-secondary text-on-secondary px-[24px] py-[12px] rounded-lg font-body-md text-body-md flex items-center gap-xs hover:bg-secondary-container hover:text-on-secondary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                Add New Book
+            </button>
+</header>
+<!-- Toolbar -->
+<div class="flex gap-md mb-lg">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-[40px] pr-sm py-[10px] rounded border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-md text-body-md transition-shadow" placeholder="Search books by title, author, or ID..." type="text"/>
+</div>
+<select class="px-md py-[10px] rounded border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none font-body-md text-body-md min-w-[200px]">
+<option value="">All Categories</option>
+<option value="fiction">Fiction</option>
+<option value="non-fiction">Non-Fiction</option>
+<option value="science">Science</option>
+<option value="history">History</option>
+</select>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container text-on-surface border-b border-outline-variant">
+<tr>
+<th class="py-md px-lg font-headline-sm text-label-sm font-medium">Book ID</th>
+<th class="py-md px-lg font-headline-sm text-label-sm font-medium">Title</th>
+<th class="py-md px-lg font-headline-sm text-label-sm font-medium">Author</th>
+<th class="py-md px-lg font-headline-sm text-label-sm font-medium">Category</th>
+<th class="py-md px-lg font-headline-sm text-label-sm font-medium">Status</th>
+<th class="py-md px-lg font-headline-sm text-label-sm font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="py-md px-lg text-outline">#B-1024</td>
+<td class="py-md px-lg font-medium text-on-surface">The Silent Patient</td>
+<td class="py-md px-lg">Alex Michaelides</td>
+<td class="py-md px-lg">Fiction</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-primary-fixed/20 text-primary-container font-label-sm text-label-sm">Available</span>
+</td>
+<td class="py-md px-lg text-right flex justify-end gap-sm">
+<button class="text-primary hover:text-primary-container p-xs rounded hover:bg-surface-dim transition-colors" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="text-error hover:text-error-container p-xs rounded hover:bg-error-container/20 transition-colors" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="py-md px-lg text-outline">#B-1025</td>
+<td class="py-md px-lg font-medium text-on-surface">Thinking, Fast and Slow</td>
+<td class="py-md px-lg">Daniel Kahneman</td>
+<td class="py-md px-lg">Science</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-secondary-fixed/30 text-secondary-container font-label-sm text-label-sm">Checked Out</span>
+</td>
+<td class="py-md px-lg text-right flex justify-end gap-sm">
+<button class="text-primary hover:text-primary-container p-xs rounded hover:bg-surface-dim transition-colors" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="text-error hover:text-error-container p-xs rounded hover:bg-error-container/20 transition-colors" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+<td class="py-md px-lg text-outline">#B-1026</td>
+<td class="py-md px-lg font-medium text-on-surface">Sapiens</td>
+<td class="py-md px-lg">Yuval Noah Harari</td>
+<td class="py-md px-lg">History</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-primary-fixed/20 text-primary-container font-label-sm text-label-sm">Available</span>
+</td>
+<td class="py-md px-lg text-right flex justify-end gap-sm">
+<button class="text-primary hover:text-primary-container p-xs rounded hover:bg-surface-dim transition-colors" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="text-error hover:text-error-container p-xs rounded hover:bg-error-container/20 transition-colors" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="flex items-center justify-between p-md border-t border-outline-variant/30 bg-surface-container-lowest">
+<p class="font-label-sm text-label-sm text-outline">Showing 1 to 3 of 150 entries</p>
+<div class="flex gap-xs">
+<button class="px-sm py-xs border border-outline-variant rounded bg-surface hover:bg-surface-dim text-on-surface disabled:opacity-50 transition-colors" disabled="">Previous</button>
+<button class="px-sm py-xs border border-primary bg-primary text-on-primary rounded">1</button>
+<button class="px-sm py-xs border border-outline-variant rounded bg-surface hover:bg-surface-dim text-on-surface transition-colors">2</button>
+<button class="px-sm py-xs border border-outline-variant rounded bg-surface hover:bg-surface-dim text-on-surface transition-colors">3</button>
+<button class="px-sm py-xs border border-outline-variant rounded bg-surface hover:bg-surface-dim text-on-surface transition-colors">Next</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

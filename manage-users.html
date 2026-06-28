@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ogoloma Library - Manage Users</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9ff",
+                        "inverse-on-surface": "#ecf0ff",
+                        "on-background": "#161c27",
+                        "surface-container-high": "#e3e8f9",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary-fixed": "#111c2c",
+                        "on-surface": "#161c27",
+                        "on-tertiary-container": "#99a4b9",
+                        "secondary-fixed-dim": "#eec058",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#2d486d",
+                        "primary-container": "#1e3a5f",
+                        "on-secondary-fixed": "#261a00",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d4daea",
+                        "surface-container-highest": "#dde2f3",
+                        "background": "#f9f9ff",
+                        "tertiary-container": "#2f3a4c",
+                        "surface-container-low": "#f1f3ff",
+                        "secondary": "#795900",
+                        "primary-fixed": "#d5e3ff",
+                        "surface-container": "#e8eeff",
+                        "on-primary-container": "#8aa4cf",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#bcc7dd",
+                        "outline": "#74777f",
+                        "secondary-fixed": "#ffdf9f",
+                        "tertiary-fixed": "#d8e3fa",
+                        "inverse-primary": "#adc8f5",
+                        "tertiary": "#192435",
+                        "on-surface-variant": "#43474e",
+                        "on-tertiary-fixed-variant": "#3c475a",
+                        "secondary-container": "#fece65",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2a303d",
+                        "on-primary-fixed": "#001c3b",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-error-container": "#93000a",
+                        "primary": "#022448",
+                        "surface-tint": "#455f87",
+                        "on-secondary-container": "#755700",
+                        "primary-fixed-dim": "#adc8f5",
+                        "surface-variant": "#dde2f3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "label-sm": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex">
+<!-- SideNavBar Component -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-primary dark:bg-tertiary text-on-primary dark:text-tertiary-fixed border-r border-outline-variant shadow-lg flex flex-col h-full py-lg z-50">
+<!-- Header -->
+<div class="px-lg pb-lg border-b border-on-primary/20 flex items-center gap-sm">
+<img alt="Admin avatar" class="w-12 h-12 rounded-full object-cover border-2 border-secondary-container" data-alt="A small, professional portrait photograph of an admin user in a corporate library setting, smiling subtly. The background is a slightly blurred modern office environment with soft white and navy blue tones, emphasizing a trustworthy and organized atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtiM5qSh42UHxgfE0UuQDbUj3Xp66QxYyZewj8kJZ2YKRv38uya20cZMD_iXhyrCz9e-LHWW_QPcDWc9EYn9S9X4WnUQNMm_4ix6MYSEunwiKQeUWP5az4q8EGnQhFQPCKK0pN9MvR1ONI4ZtiRhUK4-wiF6RAp09hcoHy4hleJOY7ozgCdLEeWu9k_RII15mSXy6oYfEucE6GmUuZ7G2Sh8I0bxBbPbQo40Z7rH_2AvMnGQfzulRgdVsHJFiROo0tkxy91w-IpSs3"/>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-primary">Admin Panel</h2>
+<p class="font-label-sm text-label-sm text-on-primary/80">Ogoloma Branch</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<div class="flex-1 overflow-y-auto py-md flex flex-col gap-xs px-md">
+<!-- Dashboard -->
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm rounded-lg hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<!-- Books -->
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm rounded-lg hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-sm text-label-sm">Books</span>
+</a>
+<!-- Users (Active) -->
+<a class="bg-primary-container text-on-primary-container border-l-4 border-secondary-container flex items-center gap-xs px-md py-sm rounded-r-lg translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-sm text-label-sm font-medium">Users</span>
+</a>
+<!-- Circulation -->
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm rounded-lg hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span>
+<span class="font-label-sm text-label-sm">Circulation</span>
+</a>
+<!-- Reports -->
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm rounded-lg hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+</div>
+<!-- Footer Navigation -->
+<div class="px-md pt-md border-t border-on-primary/20 flex flex-col gap-xs">
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm rounded-lg hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+<a class="text-on-primary/70 dark:text-tertiary-fixed/70 flex items-center gap-xs px-md py-sm rounded-lg hover:bg-primary-container/20 hover:text-on-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-sm text-label-sm">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] flex-1 min-h-screen p-margin-desktop bg-surface-container-low">
+<!-- Page Header & Toolbar -->
+<div class="flex flex-col gap-lg mb-xl">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">Manage Users</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">View, search, and manage library members and their access levels.</p>
+</div>
+<!-- Toolbar (Bento-style layout) -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/30 flex flex-wrap gap-md items-center justify-between">
+<!-- Search & Filter Group -->
+<div class="flex flex-wrap items-center gap-md flex-1">
+<!-- Search Input -->
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-[40px] pr-sm py-[10px] bg-surface border border-outline-variant rounded-lg text-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-shadow" placeholder="Search by Name or Reg No..." type="text"/>
+</div>
+<!-- Role Filter -->
+<div class="relative min-w-[150px]">
+<select class="w-full appearance-none pl-sm pr-[32px] py-[10px] bg-surface border border-outline-variant rounded-lg text-body-md focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-shadow cursor-pointer">
+<option value="all">All Roles</option>
+<option value="student">Student</option>
+<option value="faculty">Faculty</option>
+<option value="staff">Staff</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="bg-secondary-container text-on-secondary-container px-lg py-sm rounded-lg font-label-sm text-label-sm font-semibold hover:bg-secondary hover:text-on-secondary transition-colors flex items-center gap-xs shadow-sm whitespace-nowrap">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                    Register New User
+                </button>
+</div>
+</div>
+<!-- Data Table (Card Container) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] border border-outline-variant/20 overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant/50">
+<th class="py-sm px-lg font-label-sm text-label-sm font-semibold text-on-surface-variant">Reg No</th>
+<th class="py-sm px-lg font-label-sm text-label-sm font-semibold text-on-surface-variant">Name</th>
+<th class="py-sm px-lg font-label-sm text-label-sm font-semibold text-on-surface-variant">Department</th>
+<th class="py-sm px-lg font-label-sm text-label-sm font-semibold text-on-surface-variant">Status</th>
+<th class="py-sm px-lg font-label-sm text-label-sm font-semibold text-on-surface-variant text-center">Borrow Count</th>
+<th class="py-sm px-lg font-label-sm text-label-sm font-semibold text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg font-medium">OGL-2023-001</td>
+<td class="py-md px-lg flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-sm">EA</div>
+                                Emmanuel Adibe
+                            </td>
+<td class="py-md px-lg text-on-surface-variant">Computer Science</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-highest text-primary font-label-sm text-xs">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                                    Active
+                                </span>
+</td>
+<td class="py-md px-lg text-center font-medium">12</td>
+<td class="py-md px-lg text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error transition-colors" title="Deactivate">
+<span class="material-symbols-outlined text-[20px]" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg font-medium">OGL-2023-045</td>
+<td class="py-md px-lg flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-sm">SO</div>
+                                Sarah Okon
+                            </td>
+<td class="py-md px-lg text-on-surface-variant">Information Technology</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-highest text-primary font-label-sm text-xs">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                                    Active
+                                </span>
+</td>
+<td class="py-md px-lg text-center font-medium">4</td>
+<td class="py-md px-lg text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error transition-colors" title="Deactivate">
+<span class="material-symbols-outlined text-[20px]" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 (Inactive) -->
+<tr class="hover:bg-surface-container-low transition-colors group bg-surface-container-lowest/50">
+<td class="py-md px-lg font-medium text-on-surface-variant">OGL-2022-112</td>
+<td class="py-md px-lg flex items-center gap-sm text-on-surface-variant">
+<div class="w-8 h-8 rounded-full bg-outline-variant text-on-surface-variant flex items-center justify-center font-bold text-label-sm">CJ</div>
+                                Chidi Johnson
+                            </td>
+<td class="py-md px-lg text-outline">Business Administration</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-sm text-xs">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+                                    Inactive
+                                </span>
+</td>
+<td class="py-md px-lg text-center font-medium text-outline">0</td>
+<td class="py-md px-lg text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-secondary transition-colors" title="Activate">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg font-medium">OGL-2024-008</td>
+<td class="py-md px-lg flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-sm">FB</div>
+                                Fatima Bello
+                            </td>
+<td class="py-md px-lg text-on-surface-variant">Mathematics</td>
+<td class="py-md px-lg">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-highest text-primary font-label-sm text-xs">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                                    Active
+                                </span>
+</td>
+<td class="py-md px-lg text-center font-medium">21</td>
+<td class="py-md px-lg text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-on-surface-variant hover:text-primary transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-error transition-colors" title="Deactivate">
+<span class="material-symbols-outlined text-[20px]" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface px-lg py-sm border-t border-outline-variant/30 flex items-center justify-between">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Showing 1 to 4 of 48 entries</p>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm flex items-center justify-center">3</button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>
